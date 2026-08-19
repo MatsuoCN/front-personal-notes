@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minhas Notas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Minhas Notas</h1>
+      <button id="btn-new-note" class="btn btn-primary">+ Nova nota</button>
+    </header>
+
+    <main class="app-main">
+      <section id="notes-list" class="notes-list">
+        <!-- Notas renderizadas via JS -->
+        <p class="empty-state" id="empty-state">Nenhuma nota ainda. Crie a primeira!</p>
+      </section>
+    </main>
+
+    <!-- Modal de criação/edição -->
+    <div id="note-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2 id="modal-title">Nova nota</h2>
+        <form id="note-form">
+          <input type="hidden" id="note-id">
+          <label for="note-title">Título</label>
+          <input type="text" id="note-title" required maxlength="120" placeholder="Título da nota">
+
+          <label for="note-content">Conteúdo</label>
+          <textarea id="note-content" rows="8" placeholder="Escreva sua nota..."></textarea>
+
+          <div class="modal-actions">
+            <button type="button" id="btn-cancel" class="btn btn-secondary">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
