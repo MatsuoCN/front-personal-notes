@@ -6,6 +6,7 @@
   --color-text: #2a2a2a;
   --color-muted: #8a8a8a;
   --color-border: #e4e1db;
+  --color-error: #b3413a;
   --radius: 10px;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
@@ -20,6 +21,87 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
 }
+
+.hidden {
+  display: none !important;
+}
+
+/* ---------- Telas de autenticação ---------- */
+
+.auth-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.auth-card h1 {
+  font-size: 1.4rem;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.auth-card label {
+  display: block;
+  margin: 12px 0 4px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.auth-card .btn {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.auth-error {
+  color: var(--color-error);
+  font-size: 0.85rem;
+  min-height: 1.2em;
+  margin: 10px 0 0;
+}
+
+.auth-success {
+  color: #2f7a4f;
+  background: #eaf6ee;
+  font-size: 0.85rem;
+  margin: 0 0 4px;
+  padding: 0;
+}
+
+.auth-success:empty {
+  display: none;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-top: 16px;
+}
+
+.auth-switch a {
+  color: var(--color-primary);
+}
+
+/* ---------- App principal ---------- */
 
 .app {
   max-width: 900px;
@@ -37,6 +119,11 @@ body {
 .app-header h1 {
   font-size: 1.6rem;
   margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
 }
 
 .btn {
@@ -110,7 +197,7 @@ body {
 }
 
 .note-actions .delete {
-  color: #b3413a;
+  color: var(--color-error);
 }
 
 .empty-state {
@@ -127,10 +214,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.modal.hidden {
-  display: none;
 }
 
 .modal-content {

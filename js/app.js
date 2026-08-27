@@ -17,6 +17,7 @@ document.getElementById("show-register").addEventListener("click", (e) => {
 document.getElementById("show-login").addEventListener("click", (e) => {
   e.preventDefault();
   showScreen("login");
+  showAuthError("login-success", "");
 });
 
 loginForm.addEventListener("submit", async (event) => {
@@ -47,6 +48,7 @@ registerForm.addEventListener("submit", async (event) => {
     await register({ nome, email, senha });
     showScreen("login");
     document.getElementById("login-email").value = email;
+    showAuthError("login-success", "Conta criada com sucesso! Faça login.");
   } catch (error) {
     showAuthError("register-error", error.message);
   }
