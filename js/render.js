@@ -4,6 +4,28 @@ const notesListEl = document.getElementById("notes-list");
 const emptyStateEl = document.getElementById("empty-state");
 
 /**
+ * Converte uma data ISO (ex: note.createdAt) em texto relativo, tipo "há 2 dias".
+ * @param {string} isoDate
+ * @returns {string}
+ */
+function formatRelativeTime(isoDate) {
+  if (!isoDate) return "";
+
+  const diffMs = Date.now() - new Date(isoDate).getTime();
+  const diffMinutes = Math.floor(diffMs / (1000 * 60));
+  const diffHours = Math.floor(diffMinutes / 60);
+  const diffDays = Math.floor(diffHours / 24);
+
+  if (diffMinutes < 1) return "agora mesmo";
+  if (diffMinutes < 60) return `há ${diffMinutes} min`;
+  if (diffHours < 24) return `há ${diffHours}h`;
+  if (diffDays === 1) return "há 1 dia";
+  if (diffDays < 30) return `há ${diffDays} dias`;
+
+  return new Date(isoDate).toLocaleDateString("pt-BR");
+}
+
+/**
  * Renderiza a lista completa de notas.
  * @param {Array} notes - notas vindas da API (cada uma com _id, titulo, conteudo)
  * @param {{onEdit: Function, onDelete: Function}} handlers
@@ -29,6 +51,10 @@ function renderNotes(notes, { onEdit, onDelete }) {
     const content = document.createElement("p");
     content.textContent = note.conteudo || "";
 
+    const date = document.createElement("span");
+    date.className = "note-date";
+    date.textContent = formatRelativeTime(note.createdAt);
+
     const actions = document.createElement("div");
     actions.className = "note-actions";
 
@@ -42,7 +68,7 @@ function renderNotes(notes, { onEdit, onDelete }) {
     deleteBtn.addEventListener("click", () => onDelete(note._id));
 
     actions.append(editBtn, deleteBtn);
-    card.append(title, content, actions);
+    card.append(title, content, date, actions);
     notesListEl.appendChild(card);
   });
 }
