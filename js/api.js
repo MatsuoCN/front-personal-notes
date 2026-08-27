@@ -1,6 +1,6 @@
 // api.js — centraliza todas as chamadas HTTP para a API (auth + notas)
 
-const API_ROOT = "http://localhost:3000/api";
+const API_ROOT = "http://127.0.0.1:3000/api";
 const AUTH_URL = `${API_ROOT}/auth`;
 const NOTAS_URL = `${API_ROOT}/notas`;
 
