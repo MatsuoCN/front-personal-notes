@@ -7,15 +7,58 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
+
+  <!-- Tela de login -->
+  <div id="login-screen" class="auth-screen">
+    <div class="auth-card">
+      <h1>Minhas Notas</h1>
+      <form id="login-form">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" required placeholder="seu@email.com">
+
+        <label for="login-senha">Senha</label>
+        <input type="password" id="login-senha" required placeholder="Sua senha">
+
+        <button type="submit" class="btn btn-primary">Entrar</button>
+        <p class="auth-error" id="login-error"></p>
+      </form>
+      <p class="auth-switch">Não tem conta? <a href="#" id="show-register">Registre-se</a></p>
+    </div>
+  </div>
+
+  <!-- Tela de registro -->
+  <div id="register-screen" class="auth-screen hidden">
+    <div class="auth-card">
+      <h1>Criar conta</h1>
+      <form id="register-form">
+        <label for="register-nome">Nome</label>
+        <input type="text" id="register-nome" required placeholder="Seu nome">
+
+        <label for="register-email">Email</label>
+        <input type="email" id="register-email" required placeholder="seu@email.com">
+
+        <label for="register-senha">Senha</label>
+        <input type="password" id="register-senha" required placeholder="Crie uma senha">
+
+        <button type="submit" class="btn btn-primary">Criar conta</button>
+        <p class="auth-error" id="register-error"></p>
+      </form>
+      <p class="auth-switch">Já tem conta? <a href="#" id="show-login">Fazer login</a></p>
+    </div>
+  </div>
+
+  <!-- App principal -->
+  <div id="app" class="app hidden">
     <header class="app-header">
       <h1>Minhas Notas</h1>
-      <button id="btn-new-note" class="btn btn-primary">+ Nova nota</button>
+      <div class="header-actions">
+        <button id="btn-new-note" class="btn btn-primary">+ Nova nota</button>
+        <button id="btn-logout" class="btn btn-secondary">Sair</button>
+      </div>
     </header>
 
     <main class="app-main">
       <section id="notes-list" class="notes-list">
-        <!-- Notas renderizadas via JS -->
         <p class="empty-state" id="empty-state">Nenhuma nota ainda. Crie a primeira!</p>
       </section>
     </main>
@@ -26,11 +69,11 @@
         <h2 id="modal-title">Nova nota</h2>
         <form id="note-form">
           <input type="hidden" id="note-id">
-          <label for="note-title">Título</label>
-          <input type="text" id="note-title" required maxlength="120" placeholder="Título da nota">
+          <label for="note-titulo">Título</label>
+          <input type="text" id="note-titulo" required maxlength="120" placeholder="Título da nota">
 
-          <label for="note-content">Conteúdo</label>
-          <textarea id="note-content" rows="8" placeholder="Escreva sua nota..."></textarea>
+          <label for="note-conteudo">Conteúdo</label>
+          <textarea id="note-conteudo" rows="8" placeholder="Escreva sua nota..."></textarea>
 
           <div class="modal-actions">
             <button type="button" id="btn-cancel" class="btn btn-secondary">Cancelar</button>

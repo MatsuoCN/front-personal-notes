@@ -5,11 +5,10 @@ const emptyStateEl = document.getElementById("empty-state");
 
 /**
  * Renderiza a lista completa de notas.
- * @param {Array} notes - notas vindas da API (cada uma com _id, title, content)
+ * @param {Array} notes - notas vindas da API (cada uma com _id, titulo, conteudo)
  * @param {{onEdit: Function, onDelete: Function}} handlers
  */
 function renderNotes(notes, { onEdit, onDelete }) {
-  // Limpa apenas os cards, mantendo o empty-state no DOM
   notesListEl.querySelectorAll(".note-card").forEach((el) => el.remove());
 
   if (!notes || notes.length === 0) {
@@ -25,10 +24,10 @@ function renderNotes(notes, { onEdit, onDelete }) {
     card.dataset.id = note._id;
 
     const title = document.createElement("h3");
-    title.textContent = note.title;
+    title.textContent = note.titulo;
 
     const content = document.createElement("p");
-    content.textContent = note.content || "";
+    content.textContent = note.conteudo || "";
 
     const actions = document.createElement("div");
     actions.className = "note-actions";
@@ -56,25 +55,43 @@ function openModal(note = null) {
   const modal = document.getElementById("note-modal");
   const modalTitle = document.getElementById("modal-title");
   const idInput = document.getElementById("note-id");
-  const titleInput = document.getElementById("note-title");
-  const contentInput = document.getElementById("note-content");
+  const tituloInput = document.getElementById("note-titulo");
+  const conteudoInput = document.getElementById("note-conteudo");
 
   if (note) {
     modalTitle.textContent = "Editar nota";
     idInput.value = note._id;
-    titleInput.value = note.title;
-    contentInput.value = note.content || "";
+    tituloInput.value = note.titulo;
+    conteudoInput.value = note.conteudo || "";
   } else {
     modalTitle.textContent = "Nova nota";
     idInput.value = "";
-    titleInput.value = "";
-    contentInput.value = "";
+    tituloInput.value = "";
+    conteudoInput.value = "";
   }
 
   modal.classList.remove("hidden");
-  titleInput.focus();
+  tituloInput.focus();
 }
 
 function closeModal() {
   document.getElementById("note-modal").classList.add("hidden");
+}
+
+/**
+ * Alterna entre as telas de login, registro e app principal.
+ * @param {"login"|"register"|"app"} screen
+ */
+function showScreen(screen) {
+  document.getElementById("login-screen").classList.toggle("hidden", screen !== "login");
+  document.getElementById("register-screen").classList.toggle("hidden", screen !== "register");
+  document.getElementById("app").classList.toggle("hidden", screen !== "app");
+}
+
+/**
+ * Exibe uma mensagem de erro em um elemento específico.
+ */
+function showAuthError(elementId, message) {
+  const el = document.getElementById(elementId);
+  el.textContent = message;
 }
